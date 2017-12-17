@@ -9,6 +9,7 @@ class graph
   list<int> * adjacency_list;
 public:
   graph(int number_of_vertices); //constructor
+  ~graph();
   void add_edge(int v, int w);
   void breadth_first_search(int s);
 };
@@ -17,6 +18,11 @@ graph::graph(int number_of_vertices)
 {
   this->number_of_vertices = number_of_vertices;
   adjacency_list = new list<int>[number_of_vertices];
+}
+
+graph::~graph()
+{
+  delete [] adjacency_list;
 }
 
 void graph::add_edge(int v, int w)
@@ -56,6 +62,9 @@ void graph::breadth_first_search(int s)
       }
     } // end of for
   } // end of while
+
+  delete [] visited;
+
 } // end of function
 
 int main()
